@@ -1,0 +1,20 @@
+HTML Code Fix Report
+===================
+Input File: python-study.html
+Output File: python-study_fixed.html
+Date: 1753289462.7938979
+
+Fixes Applied:
+- Duplicate class attributes fixed: 0
+- Code blocks processed: 48
+- File size: 105582 → 112328 bytes
+
+CSS Classes Used:
+- .comment: 282 occurrences
+- .string: 217 occurrences
+- .keyword: 793 occurrences
+- .function: 162 occurrences
+- .number: 292 occurrences
+- .operator: 0 occurrences
+- .builtin: 154 occurrences
+- .decorator: 16 occurrences

@@ -1,0 +1,1961 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Complete Study Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #3776ab;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .nav-buttons {
+            margin-top: 1rem;
+        }
+        
+        .nav-btn {
+            background-color: #ffd43b;
+            color: #3776ab;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background-color: #ffed4e;
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn.active {
+            background-color: #306998;
+            color: white;
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .section {
+            background-color: white;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #3776ab;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #ffd43b;
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            color: #306998;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            overflow-x: auto;
+            display: block;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #3776ab;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        code {
+            background-color: transparent !important;
+            /* Remove highlights, borders, and box-shadows if present */
+            box-shadow: none !important;
+            border: none !important;
+        }
+        
+        pre {
+            background-color: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+        
+        /* Remove any highlight classes if present */
+        .highlight, .hljs, .codehilite {
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .section {
+                padding: 1rem;
+            }
+            
+            .nav-btn {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+                margin: 2px;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+    <!-- Link to external JS for navigation and highlighting -->
+        <script src="js/cheatsheet.js" defer></script>
+    </head>
+<body>
+    <header>
+        <h1>🐍 Python Complete Study Guide</h1>
+        <div class="nav-buttons">
+            <button class="nav-btn active" data-page="page1">Basics</button>
+            <button class="nav-btn" data-page="page2">Data Types</button>
+            <button class="nav-btn" data-page="page3">Operators</button>
+            <button class="nav-btn" data-page="page4">Control Flow</button>
+            <button class="nav-btn" data-page="page5">Functions &amp; OOP</button>
+            <button class="nav-btn" data-page="page6">Advanced</button>
+            <button class="nav-btn" data-page="page7">ML Libraries</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Page 1: Basics -->
+        <div id="page1" class="page active">
+            <div class="section">
+                <h2>History &amp; Key Features</h2>
+                <table>
+                    <tbody><tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Created By</td>
+                        <td>Guido van Rossum</td>
+                    </tr>
+                    <tr>
+                        <td>First Released</td>
+                        <td>1991</td>
+                    </tr>
+                    <tr>
+                        <td>Latest Major Version</td>
+                        <td>Python 3.12 (as of 2024)</td>
+                    </tr>
+                    <tr>
+                        <td>Key Features</td>
+                        <td>
+                            • High-level, interpreted language<br>
+                            • Dynamic typing<br>
+                            • Automatic memory management<br>
+                            • Cross-platform<br>
+                            • Extensive standard library<br>
+                            • Multiple programming paradigms
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+
+            <div class="section">
+                <h2>Language Structure</h2>
+                <pre><code><span class="comment"># Python uses indentation for code blocks</span>
+<span class="keyword">def</span> <span class="function">greet</span>(name):
+    <span class="comment"># 4 spaces for indentation (PEP 8 standard)</span>
+    <span class="keyword">if</span> name:
+        <span class="builtin">print</span>(f<span class="string">"Hello, {name}!"</span>)
+    <span class="keyword">else</span>:
+        <span class="builtin">print</span>(<span class="string">"Hello, World!"</span>)
+
+<span class="comment"># No semicolons required</span>
+x = <span class="number">10</span>
+y = <span class="number">20</span>
+
+<span class="comment"># Multiple statements on one line (discouraged)</span>
+a = <span class="number">1</span>; b = <span class="number">2</span>; c = <span class="number">3</span></code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Naming Conventions (PEP 8)</h2>
+                <table>
+                    <tbody><tr>
+                        <th>Type</th>
+                        <th>Convention</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>Variables</td>
+                        <td>snake_case</td>
+                        <td><code>user_name, total_count</code></td>
+                    </tr>
+                    <tr>
+                        <td>Functions</td>
+                        <td>snake_case</td>
+                        <td><code>calculate_total(), get_user_data()</code></td>
+                    </tr>
+                    <tr>
+                        <td>Classes</td>
+                        <td>PascalCase</td>
+                        <td><code>UserProfile, DataProcessor</code></td>
+                    </tr>
+                    <tr>
+                        <td>Constants</td>
+                        <td>UPPER_SNAKE_CASE</td>
+                        <td><code>MAX_SIZE, DEFAULT_TIMEOUT</code></td>
+                    </tr>
+                    <tr>
+                        <td>Private Variables</td>
+                        <td>Leading underscore</td>
+                        <td><code>_internal_var, _private_method()</code></td>
+                    </tr>
+                    <tr>
+                        <td>Name Mangling</td>
+                        <td>Double leading underscore</td>
+                        <td><code>__private_var</code></td>
+                    </tr>
+                </tbody></table>
+            </div>
+
+            <div class="section">
+                <h2>Reserved Keywords</h2>
+                <pre><code><span class="comment"># Python 3.12 keywords (35 total)</span>
+<span class="keyword">import</span> keyword
+<span class="builtin">print</span>(keyword.kwlist)
+
+<span class="comment"># Keywords:</span>
+<span class="comment"># False, None, True, and, as, assert, async, await,</span>
+<span class="comment"># break, class, continue, def, del, elif, else, except,</span>
+<span class="comment"># finally, for, from, global, if, import, in, is,</span>
+<span class="comment"># lambda, nonlocal, not, or, pass, raise, return,</span>
+<span class="comment"># try, while, with, yield</span></code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Importing Modules</h2>
+                <pre><code><span class="comment"># Standard import</span>
+<span class="keyword">import</span> math
+<span class="builtin">print</span>(math.pi)
+
+<span class="comment"># Import specific functions</span>
+<span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, timedelta
+
+<span class="comment"># Import with alias</span>
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="comment"># Import all (discouraged)</span>
+<span class="keyword">from</span> os <span class="keyword">import</span> *
+
+<span class="comment"># Conditional import</span>
+<span class="keyword">try</span>:
+    <span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+<span class="keyword">except</span> ImportError:
+    <span class="builtin">print</span>(<span class="string">"Pandas not installed"</span>)</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Console Input &amp; Output</h2>
+                <h3>Display Output</h3>
+                <pre><code><span class="comment"># Basic print</span>
+<span class="builtin">print</span>(<span class="string">"Hello, World!"</span>)
+
+<span class="comment"># Multiple values</span>
+<span class="builtin">print</span>(<span class="string">"Name:"</span>, <span class="string">"John"</span>, <span class="string">"Age:"</span>, <span class="number">25</span>)
+
+<span class="comment"># Custom separator</span>
+<span class="builtin">print</span>(<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>, sep=<span class="string">"-"</span>)  <span class="comment"># A-B-C</span>
+
+<span class="comment"># Custom end character</span>
+<span class="builtin">print</span>(<span class="string">"Loading"</span>, end=<span class="string">"..."</span>)
+
+<span class="comment"># Print to file</span>
+<span class="keyword">with</span> <span class="builtin">open</span>(<span class="string">"output.txt"</span>, <span class="string">"w"</span>) <span class="keyword">as</span> f:
+    <span class="builtin">print</span>(<span class="string">"Hello, File!"</span>, file=f)</code></pre>
+                
+                <h3>Get User Input</h3>
+                <pre><code><span class="comment"># Basic input (always returns string)</span>
+name = <span class="builtin">input</span>(<span class="string">"Enter your name: "</span>)
+
+<span class="comment"># Convert input to other types</span>
+age = <span class="builtin">int</span>(<span class="builtin">input</span>(<span class="string">"Enter your age: "</span>))
+height = <span class="builtin">float</span>(<span class="builtin">input</span>(<span class="string">"Enter your height: "</span>))
+
+<span class="comment"># Multiple inputs on one line</span>
+x, y = <span class="builtin">map</span>(int, <span class="builtin">input</span>(<span class="string">"Enter two numbers: "</span>).split())</code></pre>
+            </div>
+        </div>
+
+        <!-- Page 2: Data Types -->
+        <div id="page2" class="page">
+            <div class="section">
+                <h2>Variables &amp; Data Types</h2>
+                <pre><code><span class="comment"># Dynamic typing - no need to declare type</span>
+x = <span class="number">10</span>              <span class="comment"># int</span>
+y = <span class="number">3.14</span>           <span class="comment"># float</span>
+name = <span class="string">"Python"</span>    <span class="comment"># str</span>
+is_valid = <span class="keyword">True</span>    <span class="comment"># bool</span>
+
+<span class="comment"># Multiple assignment</span>
+a, b, c = <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>
+x = y = z = <span class="number">0</span>
+
+<span class="comment"># Swapping variables</span>
+a, b = b, a</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Common Data Types</h2>
+                <table>
+                    <tbody><tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>int</code></td>
+                        <td>Integer numbers</td>
+                        <td><code>42, -10, 0</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>float</code></td>
+                        <td>Floating-point numbers</td>
+                        <td><code>3.14, -0.5, 2.0</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>complex</code></td>
+                        <td>Complex numbers</td>
+                        <td><code>3+4j, 2-1j</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>str</code></td>
+                        <td>String (text)</td>
+                        <td><code>"Hello", 'Python'</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>bool</code></td>
+                        <td>Boolean</td>
+                        <td><code>True, False</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>list</code></td>
+                        <td>Mutable sequence</td>
+                        <td><code>[1, 2, 3], ["a", "b"]</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>tuple</code></td>
+                        <td>Immutable sequence</td>
+                        <td><code>(1, 2, 3), ("x", "y")</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>dict</code></td>
+                        <td>Key-value pairs</td>
+                        <td><code>{"name": "John", "age": 25}</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>set</code></td>
+                        <td>Unique elements</td>
+                        <td><code>{1, 2, 3}, {"a", "b"}</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>NoneType</code></td>
+                        <td>Null value</td>
+                        <td><code>None</code></td>
+                    </tr>
+                </tbody></table>
+                
+                <h3>Data Type Examples</h3>
+                <pre><code><span class="comment"># Numbers</span>
+integer = <span class="number">100</span>
+big_int = 10_000_000  <span class="comment"># Underscores for readability</span>
+binary = 0b1010       <span class="comment"># Binary: 10</span>
+octal = 0o12         <span class="comment"># Octal: 10</span>
+hexadecimal = 0xA    <span class="comment"># Hex: 10</span>
+
+<span class="comment"># Lists (mutable)</span>
+fruits = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"orange"</span>]
+fruits.append(<span class="string">"grape"</span>)
+fruits[<span class="number">0</span>] = <span class="string">"pear"</span>
+
+<span class="comment"># Tuples (immutable)</span>
+coordinates = (<span class="number">10</span>, <span class="number">20</span>)
+single_tuple = (<span class="number">42</span>,)  <span class="comment"># Note the comma</span>
+
+<span class="comment"># Dictionaries</span>
+person = {
+    <span class="string">"name"</span>: <span class="string">"Alice"</span>,
+    <span class="string">"age"</span>: <span class="number">30</span>,
+    <span class="string">"skills"</span>: [<span class="string">"Python"</span>, <span class="string">"SQL"</span>]
+}
+
+<span class="comment"># Sets</span>
+unique_nums = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>}  <span class="comment"># {1, 2, 3}</span>
+empty_set = <span class="builtin">set</span>()  <span class="comment"># Not {} which creates dict</span></code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Type Hints &amp; Static Typing (Python 3.5+)</h2>
+                <pre><code><span class="keyword">from</span> typing <span class="keyword">import</span> List, Dict, Tuple, Optional, Union, Any
+
+<span class="comment"># Basic type hints</span>
+<span class="keyword">def</span> <span class="function">greet</span>(name: str) -&amp;gt; str:
+    <span class="keyword">return</span> f<span class="string">"Hello, {name}!"</span>
+
+<span class="comment"># Variables with type hints</span>
+age: int = <span class="number">25</span>
+price: float = <span class="number">19.99</span>
+names: List[str] = [<span class="string">"Alice"</span>, <span class="string">"Bob"</span>]
+
+<span class="comment"># Complex type hints</span>
+<span class="keyword">def</span> <span class="function">process_data</span>(
+    data: Dict[str, List[int]], 
+    threshold: Optional[float] = <span class="keyword">None</span>
+) -&amp;gt; Tuple[int, float]:
+    total = <span class="builtin">sum</span>(<span class="builtin">sum</span>(values) <span class="keyword">for</span> values <span class="keyword">in</span> data.values())
+    avg = total / <span class="builtin">len</span>(data) <span class="keyword">if</span> data <span class="keyword">else</span> <span class="number">0.0</span>
+    <span class="keyword">return</span> total, avg
+
+<span class="comment"># Union types</span>
+<span class="keyword">def</span> <span class="function">parse_number</span>(value: Union[str, int, float]) -&amp;gt; float:
+    <span class="keyword">return</span> <span class="builtin">float</span>(value)
+
+<span class="comment"># Type aliases</span>
+Vector = List[float]
+Matrix = List[List[float]]
+
+<span class="keyword">def</span> <span class="function">dot_product</span>(v1: Vector, v2: Vector) -&amp;gt; float:
+    <span class="keyword">return</span> <span class="builtin">sum</span>(a * b <span class="keyword">for</span> a, b <span class="keyword">in</span> <span class="builtin">zip</span>(v1, v2))</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Strings</h2>
+                <h3>String Operations</h3>
+                <pre><code><span class="comment"># Concatenation &amp;amp; Repetition</span>
+first = <span class="string">"Hello"</span>
+last = <span class="string">"World"</span>
+full = first + <span class="string">" "</span> + last  <span class="comment"># "Hello World"</span>string">"Hello World"</span>
+repeated = <span class="string">"Ha"</span> * <span class="number">3</span>       <span class="comment"># "HaHaHa"</span>ass="string">"HaHaHa"</span>
+
+<span class="comment"># String length</span>
+text = <span class="string">"Python"</span>
+length = <span class="builtin">len</span>(text)  <span class="comment"># 6</span>
+
+<span class="comment"># Access characters &amp;amp; slices</span>
+word = <span class="string">"Programming"</span>
+first_char = word[<span class="number">0</span>]      <span class="comment"># 'P'</span>an class="string">'P'</span>
+last_char = word[-<span class="number">1</span>]      <span class="comment"># 'g'</span>an class="string">'g'</span>
+substring = word[<span class="number">0</span>:<span class="number">7</span>]     <span class="comment"># 'Program'</span>ss="string">'Program'</span>
+reversed_str = word[::-<span class="number">1</span>] <span class="comment"># 'gnimmargorP'</span>string">'gnimmargorP'</span>
+
+<span class="comment"># Common string methods</span>
+text = <span class="string">"  Python Programming  "</span>
+<span class="builtin">print</span>(text.strip())       <span class="comment"># Remove whitespace</span>
+<span class="builtin">print</span>(text.lower())       <span class="comment"># Lowercase</span>
+<span class="builtin">print</span>(text.upper())       <span class="comment"># Uppercase</span>
+<span class="builtin">print</span>(text.replace(<span class="string">"Python"</span>, <span class="string">"Java"</span>))
+<span class="builtin">print</span>(text.split())       <span class="comment"># Split into list</span></code></pre>
+
+                <h3>Escape Characters</h3>
+                <table>
+                    <tbody><tr>
+                        <th>Escape Sequence</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>\n</code></td>
+                        <td>Newline</td>
+                        <td><code>"Line 1\nLine 2"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>\t</code></td>
+                        <td>Tab</td>
+                        <td><code>"Col1\tCol2"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>\\</code></td>
+                        <td>Backslash</td>
+                        <td><code>"C:\\Users"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>\'</code></td>
+                        <td>Single quote</td>
+                        <td><code>'It\'s Python'</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>\"</code></td>
+                        <td>Double quote</td>
+                        <td><code>"She said \"Hi\""</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>\r</code></td>
+                        <td>Carriage return</td>
+                        <td><code>"Hello\rWorld"</code></td>
+                    </tr>
+                </tbody></table>
+
+                <h3>String Formatting</h3>
+                <pre><code><span class="comment"># f-strings (Python 3.6+) - Recommended</span>
+name = <span class="string">"Alice"</span>
+age = <span class="number">30</span>
+<span class="builtin">print</span>(f<span class="string">"My name is {name} and I'm {age} years old"</span>)
+<span class="builtin">print</span>(f<span class="string">"Next year I'll be {age + 1}"</span>)
+<span class="builtin">print</span>(f<span class="string">"Pi: {3.14159:.2f}"</span>)  <span class="comment"># Format to 2 decimals</span>
+
+<span class="comment"># format() method</span>
+template = <span class="string">"Hello, {}! You have {} messages."</span>
+<span class="builtin">print</span>(template.format(<span class="string">"Bob"</span>, <span class="number">5</span>))
+
+<span class="comment"># % formatting (older style)</span>
+<span class="builtin">print</span>(<span class="string">"Hello, %s! You are %d years old."</span> % (<span class="string">"Carol"</span>, <span class="number">25</span>))
+
+<span class="comment"># Template strings</span>
+<span class="keyword">from</span> string <span class="keyword">import</span> Template
+t = Template(<span class="string">"$name is $age years old"</span>)
+<span class="builtin">print</span>(t.substitute(name=<span class="string">"David"</span>, age=<span class="number">35</span>))</code></pre>
+            </div>
+        </div>
+
+        <!-- Page 3: Operators -->
+        <div id="page3" class="page">
+            <div class="section">
+                <h2>Arithmetic Operators</h2>
+                <table>
+                    <tbody><tr>
+                        <th>Operator</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>+</code></td>
+                        <td>Addition</td>
+                        <td><code>10 + 5 = 15</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>-</code></td>
+                        <td>Subtraction</td>
+                        <td><code>10 - 5 = 5</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>*</code></td>
+                        <td>Multiplication</td>
+                        <td><code>10 * 5 = 50</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>/</code></td>
+                        <td>Division</td>
+                        <td><code>10 / 4 = 2.5</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>//</code></td>
+                        <td>Floor Division</td>
+                        <td><code>10 // 4 = 2</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>%</code></td>
+                        <td>Modulus</td>
+                        <td><code>10 % 3 = 1</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>**</code></td>
+                        <td>Exponentiation</td>
+                        <td><code>2 ** 3 = 8</code></td>
+                    </tr>
+                </tbody></table>
+                
+                <pre><code><span class="comment"># Arithmetic examples</span>
+a, b = <span class="number">15</span>, <span class="number">4</span>
+<span class="builtin">print</span>(f<span class="string">"Addition: {a} + {b} = {a + b}"</span>)
+<span class="builtin">print</span>(f<span class="string">"Division: {a} / {b} = {a / b}"</span>)
+<span class="builtin">print</span>(f<span class="string">"Floor Division: {a} // {b} = {a // b}"</span>)
+<span class="builtin">print</span>(f<span class="string">"Modulus: {a} % {b} = {a % b}"</span>)
+<span class="builtin">print</span>(f<span class="string">"Power: {2} ** {10} = {2 ** 10}"</span>)</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Comparison Operators</h2>
+                <table>
+                    <tbody><tr>
+                        <th>Operator</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>==</code></td>
+                        <td>Equal to</td>
+                        <td><code>5 == 5 → True</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>!=</code></td>
+                        <td>Not equal to</td>
+                        <td><code>5 != 3 → True</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>&gt;</code></td>
+                        <td>Greater than</td>
+                        <td><code>5 &gt; 3 → True</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;</code></td>
+                        <td>Less than</td>
+                        <td><code>5 &lt; 10 → True</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>&gt;=</code></td>
+                        <td>Greater than or equal</td>
+                        <td><code>5 &gt;= 5 → True</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;=</code></td>
+                        <td>Less than or equal</td>
+                        <td><code>5 &lt;= 10 → True</code></td>
+                    </tr>
+                </tbody></table>
+            </div>
+
+            <div class="section">
+                <h2>Logical Operators</h2>
+                <pre><code><span class="comment"># Logical operators: and, or, not</span>
+x, y = <span class="keyword">True</span>, <span class="keyword">False</span>
+
+<span class="builtin">print</span>(x <span class="keyword">and</span> y)  <span class="comment"># False</span>
+<span class="builtin">print</span>(x <span class="keyword">or</span> y)   <span class="comment"># True</span>
+<span class="builtin">print</span>(<span class="keyword">not</span> x)    <span class="comment"># False</span>
+
+<span class="comment"># Short-circuit evaluation</span>
+<span class="keyword">def</span> <span class="function">check</span>():
+    <span class="builtin">print</span>(<span class="string">"Function called"</span>)
+    <span class="keyword">return</span> <span class="keyword">True</span>
+
+<span class="comment"># 'check()' won't be called because False and ... is always False</span>alse and ... is always False
+result = <span class="keyword">False</span> <span class="keyword">and</span> check()
+
+<span class="comment"># Practical example</span>
+age = <span class="number">18</span>
+has_license = <span class="keyword">True</span>
+can_drive = age &amp;gt;= <span class="number">18</span> <span class="keyword">and</span> has_license</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Assignment Operators</h2>
+                <table>
+                    <tbody><tr>
+                        <th>Operator</th>
+                        <th>Example</th>
+                        <th>Equivalent to</th>
+                    </tr>
+                    <tr>
+                        <td><code>=</code></td>
+                        <td><code>x = 5</code></td>
+                        <td>Simple assignment</td>
+                    </tr>
+                    <tr>
+                        <td><code>+=</code></td>
+                        <td><code>x += 3</code></td>
+                        <td><code>x = x + 3</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>-=</code></td>
+                        <td><code>x -= 3</code></td>
+                        <td><code>x = x - 3</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>*=</code></td>
+                        <td><code>x *= 3</code></td>
+                        <td><code>x = x * 3</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>/=</code></td>
+                        <td><code>x /= 3</code></td>
+                        <td><code>x = x / 3</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>//=</code></td>
+                        <td><code>x //= 3</code></td>
+                        <td><code>x = x // 3</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>%=</code></td>
+                        <td><code>x %= 3</code></td>
+                        <td><code>x = x % 3</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>**=</code></td>
+                        <td><code>x **= 3</code></td>
+                        <td><code>x = x ** 3</code></td>
+                    </tr>
+                </tbody></table>
+            </div>
+
+            <div class="section">
+                <h2>Bitwise Operators</h2>
+                <pre><code><span class="comment"># Bitwise operators work on binary representations</span>
+a = <span class="number">60</span>   <span class="comment"># 0011 1100</span>
+b = <span class="number">13</span>   <span class="comment"># 0000 1101</span>
+
+<span class="builtin">print</span>(f<span class="string">"AND: {a} &amp;amp; {b} = {a &amp;amp; b}"</span>)      <span class="comment"># 12 (0000 1100)</span>
+<span class="builtin">print</span>(f<span class="string">"OR: {a} | {b} = {a | b}"</span>)       <span class="comment"># 61 (0011 1101)</span>
+<span class="builtin">print</span>(f<span class="string">"XOR: {a} ^ {b} = {a ^ b}"</span>)      <span class="comment"># 49 (0011 0001)</span>
+<span class="builtin">print</span>(f<span class="string">"NOT: ~{a} = {~a}"</span>)              <span class="comment"># -61</span>
+<span class="builtin">print</span>(f<span class="string">"Left Shift: {a} &amp;lt;&amp;lt; 2 = {a &amp;lt;&amp;lt; 2}"</span>) <span class="comment"># 240</span>
+<span class="builtin">print</span>(f<span class="string">"Right Shift: {a} &amp;gt;&amp;gt; 2 = {a &amp;gt;&amp;gt; 2}"</span>) <span class="comment"># 15</span></code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Membership &amp; Identity Operators</h2>
+                <pre><code><span class="comment"># Membership operators: in, not in</span>
+fruits = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"orange"</span>]
+<span class="builtin">print</span>(<span class="string">"apple"</span> <span class="keyword">in</span> fruits)     <span class="comment"># True</span>
+<span class="builtin">print</span>(<span class="string">"grape"</span> <span class="keyword">not</span> <span class="keyword">in</span> fruits) <span class="comment"># True</span>
+
+text = <span class="string">"Hello, World!"</span>
+<span class="builtin">print</span>(<span class="string">"World"</span> <span class="keyword">in</span> text)       <span class="comment"># True</span>
+
+<span class="comment"># Identity operators: is, is not</span>
+a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+b = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+c = a
+
+<span class="builtin">print</span>(a <span class="keyword">is</span> c)      <span class="comment"># True (same object)</span>
+<span class="builtin">print</span>(a <span class="keyword">is</span> b)      <span class="comment"># False (different objects)</span>
+<span class="builtin">print</span>(a == b)      <span class="comment"># True (same values)</span>
+
+<span class="comment"># Common use with None</span>
+value = <span class="keyword">None</span>
+<span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">None</span>:
+    <span class="builtin">print</span>(<span class="string">"Value is None"</span>)</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Assignment Expressions (Walrus Operator) - Python 3.8+</h2>
+                <pre><code><span class="comment"># := assigns and returns value</span>
+<span class="comment"># Useful in conditions</span>
+<span class="keyword">while</span> (line := <span class="builtin">input</span>(<span class="string">"Enter text (quit to exit): "</span>)) != <span class="string">"quit"</span>:
+    <span class="builtin">print</span>(f<span class="string">"You entered: {line}"</span>)
+
+<span class="comment"># In list comprehensions</span>
+numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]
+squares = [y <span class="keyword">for</span> x <span class="keyword">in</span> numbers <span class="keyword">if</span> (y := x**<span class="number">2</span>) &amp;gt; <span class="number">10</span>]
+<span class="builtin">print</span>(squares)  <span class="comment"># [16, 25, 36]</span>
+
+<span class="comment"># Avoid repeated function calls</span>
+<span class="keyword">import</span> re
+<span class="keyword">if</span> <span class="keyword">match</span> := re.search(r<span class="string">'\d+'</span>, <span class="string">"Age: 25"</span>):
+    <span class="builtin">print</span>(f<span class="string">"Found number: {match.group()}"</span>)</code></pre>
+            </div>
+        </div>
+
+        <!-- Page 4: Control Flow -->
+        <div id="page4" class="page">
+            <div class="section">
+                <h2>Statements</h2>
+                <h3>Simple Statements</h3>
+                <pre><code><span class="comment"># Expression statements</span>
+x = <span class="number">10</span>
+<span class="builtin">print</span>(<span class="string">"Hello"</span>)
+result = <span class="number">2</span> + <span class="number">3</span>
+
+<span class="comment"># Pass statement (null operation)</span>
+<span class="keyword">def</span> <span class="function">placeholder</span>():
+    <span class="keyword">pass</span>  <span class="comment"># TODO: implement later</span>
+
+<span class="comment"># Del statement</span>
+my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+del my_list[<span class="number">1</span>]  <span class="comment"># Remove element at index 1</span>
+
+<span class="comment"># Return statement</span>
+<span class="keyword">def</span> <span class="function">add</span>(a, b):
+    <span class="keyword">return</span> a + b
+
+<span class="comment"># Yield statement (generators)</span>
+<span class="keyword">def</span> <span class="function">count_up</span>(n):
+    i = <span class="number">0</span>
+    <span class="keyword">while</span> i &amp;lt; n:
+        <span class="keyword">yield</span> i
+        i += <span class="number">1</span>
+
+<span class="comment"># Raise statement</span>
+<span class="keyword">def</span> <span class="function">validate_age</span>(age):
+    <span class="keyword">if</span> age &amp;lt; <span class="number">0</span>:
+        <span class="keyword">raise</span> ValueError(<span class="string">"Age cannot be negative"</span>)
+
+<span class="comment"># Assert statement</span>
+<span class="keyword">assert</span> x &amp;gt; <span class="number">0</span>, <span class="string">"x must be positive"</span></code></pre>
+
+                <h3>Compound Statements</h3>
+                <pre><code><span class="comment"># If statement</span>
+<span class="keyword">if</span> condition:
+    <span class="comment"># code block</span>
+    <span class="keyword">pass</span>
+
+<span class="comment"># While loop</span>
+<span class="keyword">while</span> condition:
+    <span class="comment"># code block</span>
+    <span class="keyword">pass</span>
+
+<span class="comment"># For loop</span>
+<span class="keyword">for</span> item <span class="keyword">in</span> iterable:
+    <span class="comment"># code block</span>
+    <span class="keyword">pass</span>
+
+<span class="comment"># Try/except</span>
+<span class="keyword">try</span>:
+    <span class="comment"># risky code</span>
+    <span class="keyword">pass</span>
+<span class="keyword">except</span> Exception <span class="keyword">as</span> e:
+    <span class="comment"># handle exception</span>
+    <span class="keyword">pass</span>
+
+<span class="comment"># With statement (context manager)</span>
+<span class="keyword">with</span> <span class="builtin">open</span>(<span class="string">"file.txt"</span>) <span class="keyword">as</span> f:
+    content = f.read()
+
+<span class="comment"># Function definition</span>
+<span class="keyword">def</span> <span class="function">my_function</span>():
+    <span class="keyword">pass</span>
+
+<span class="comment"># Class definition</span>
+<span class="keyword">class</span> <span class="function">MyClass</span>:
+    <span class="keyword">pass</span></code></pre>
+
+                <h3>Expressions vs. Statements</h3>
+                <pre><code><span class="comment"># Expressions evaluate to a value</span>
+x = <span class="number">5</span> + <span class="number">3</span>      <span class="comment"># 5 + 3 is an expression</span>
+y = x * <span class="number">2</span>      <span class="comment"># x * 2 is an expression</span>
+z = <span class="builtin">len</span>([<span class="number">1</span>,<span class="number">2</span>]) <span class="comment"># len([1,2]) is an expression</span>
+
+<span class="comment"># Statements perform actions</span>
+<span class="keyword">if</span> x &amp;gt; <span class="number">0</span>:      <span class="comment"># if statement</span>
+    <span class="builtin">print</span>(x)    <span class="comment"># print statement</span>
+
+<span class="comment"># Some constructs are both</span>
+result = (x := <span class="number">10</span>)  <span class="comment"># Assignment expression (3.8+)</span></code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Flow Control - If Statements</h2>
+                <h3>Basic if Statement</h3>
+                <pre><code>age = <span class="number">18</span>
+<span class="keyword">if</span> age &amp;gt;= <span class="number">18</span>:
+    <span class="builtin">print</span>(<span class="string">"You are an adult"</span>)</code></pre>
+
+                <h3>The if...else Statement</h3>
+                <pre><code>temperature = <span class="number">25</span>
+<span class="keyword">if</span> temperature &amp;gt; <span class="number">30</span>:
+    <span class="builtin">print</span>(<span class="string">"It's hot outside"</span>)
+<span class="keyword">else</span>:
+    <span class="builtin">print</span>(<span class="string">"It's not too hot"</span>)</code></pre>
+
+                <h3>Using if...elif...else</h3>
+                <pre><code>score = <span class="number">85</span>
+<span class="keyword">if</span> score &amp;gt;= <span class="number">90</span>:
+    grade = <span class="string">"A"</span>
+<span class="keyword">elif</span> score &amp;gt;= <span class="number">80</span>:
+    grade = <span class="string">"B"</span>
+<span class="keyword">elif</span> score &amp;gt;= <span class="number">70</span>:
+    grade = <span class="string">"C"</span>
+<span class="keyword">elif</span> score &amp;gt;= <span class="number">60</span>:
+    grade = <span class="string">"D"</span>
+<span class="keyword">else</span>:
+    grade = <span class="string">"F"</span>
+<span class="builtin">print</span>(f<span class="string">"Your grade is: {grade}"</span>)</code></pre>
+
+                <h3>One-Line if Statement (Ternary Operator)</h3>
+                <pre><code><span class="comment"># Syntax: value_if_true if condition else value_if_false</span>
+age = <span class="number">20</span>
+status = <span class="string">"adult"</span> <span class="keyword">if</span> age &amp;gt;= <span class="number">18</span> <span class="keyword">else</span> <span class="string">"minor"</span>
+
+<span class="comment"># Can be nested (but avoid for readability)</span>
+x = <span class="number">5</span>
+result = <span class="string">"positive"</span> <span class="keyword">if</span> x &amp;gt; <span class="number">0</span> <span class="keyword">else</span> <span class="string">"zero"</span> <span class="keyword">if</span> x == <span class="number">0</span> <span class="keyword">else</span> <span class="string">"negative"</span></code></pre>
+
+                <h3>Check Multiple Conditions</h3>
+                <pre><code><span class="comment"># Using and/or operators</span>
+age = <span class="number">25</span>
+has_license = <span class="keyword">True</span>
+has_car = <span class="keyword">True</span>
+
+<span class="keyword">if</span> age &amp;gt;= <span class="number">18</span> <span class="keyword">and</span> has_license <span class="keyword">and</span> has_car:
+    <span class="builtin">print</span>(<span class="string">"You can drive"</span>)
+
+<span class="comment"># Using any() and all()</span>
+conditions = [age &amp;gt;= <span class="number">18</span>, has_license, has_car]
+<span class="keyword">if</span> <span class="builtin">all</span>(conditions):
+    <span class="builtin">print</span>(<span class="string">"All conditions met"</span>)
+
+<span class="keyword">if</span> <span class="builtin">any</span>([x &amp;gt; <span class="number">0</span> <span class="keyword">for</span> x <span class="keyword">in</span> [-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]]):
+    <span class="builtin">print</span>(<span class="string">"At least one positive number"</span>)</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Structural Pattern Matching (Python 3.10+)</h2>
+                <pre><code><span class="comment"># Basic match statement</span>
+<span class="keyword">def</span> <span class="function">http_status</span>(status_code):
+    <span class="keyword">match</span> status_code:
+        <span class="keyword">case</span> <span class="number">200</span>:
+            <span class="keyword">return</span> <span class="string">"OK"</span>
+        <span class="keyword">case</span> <span class="number">404</span>:
+            <span class="keyword">return</span> <span class="string">"Not Found"</span>
+        <span class="keyword">case</span> <span class="number">500</span>:
+            <span class="keyword">return</span> <span class="string">"Internal Server Error"</span>
+        <span class="keyword">case</span> _:
+            <span class="keyword">return</span> <span class="string">"Unknown status"</span>
+
+<span class="comment"># Pattern matching with conditions</span>
+<span class="keyword">def</span> <span class="function">categorize_number</span>(n):
+    <span class="keyword">match</span> n:
+        <span class="keyword">case</span> <span class="number">0</span>:
+            <span class="keyword">return</span> <span class="string">"zero"</span>
+        <span class="keyword">case</span> n <span class="keyword">if</span> n &amp;gt; <span class="number">0</span>:
+            <span class="keyword">return</span> <span class="string">"positive"</span>
+        <span class="keyword">case</span> n <span class="keyword">if</span> n &amp;lt; <span class="number">0</span>:
+            <span class="keyword">return</span> <span class="string">"negative"</span>
+
+<span class="comment"># Matching sequences</span>
+<span class="keyword">def</span> <span class="function">process_command</span>(command):
+    <span class="keyword">match</span> command.split():
+        <span class="keyword">case</span> [<span class="string">"quit"</span>]:
+            <span class="keyword">return</span> <span class="string">"Goodbye!"</span>
+        <span class="keyword">case</span> [<span class="string">"hello"</span>, name]:
+            <span class="keyword">return</span> f<span class="string">"Hello, {name}!"</span>
+        <span class="keyword">case</span> [<span class="string">"add"</span>, x, y]:
+            <span class="keyword">return</span> <span class="builtin">int</span>(x) + <span class="builtin">int</span>(y)
+        <span class="keyword">case</span> _:
+            <span class="keyword">return</span> <span class="string">"Unknown command"</span>
+
+<span class="comment"># Matching dictionaries</span>
+<span class="keyword">def</span> <span class="function">process_user</span>(user):
+    <span class="keyword">match</span> user:
+        <span class="keyword">case</span> {<span class="string">"name"</span>: name, <span class="string">"age"</span>: age} <span class="keyword">if</span> age &amp;gt;= <span class="number">18</span>:
+            <span class="keyword">return</span> f<span class="string">"{name} is an adult"</span>
+        <span class="keyword">case</span> {<span class="string">"name"</span>: name, <span class="string">"age"</span>: age}:
+            <span class="keyword">return</span> f<span class="string">"{name} is a minor"</span>
+        <span class="keyword">case</span> _:
+            <span class="keyword">return</span> <span class="string">"Invalid user data"</span></code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Looping</h2>
+                <h3>For Loops</h3>
+                <pre><code><span class="comment"># Basic for loop</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">5</span>):
+    <span class="builtin">print</span>(i)  <span class="comment"># 0, 1, 2, 3, 4</span>
+
+<span class="comment"># Iterating over list</span>
+fruits = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"orange"</span>]
+<span class="keyword">for</span> fruit <span class="keyword">in</span> fruits:
+    <span class="builtin">print</span>(fruit)
+
+<span class="comment"># With index using enumerate</span>
+<span class="keyword">for</span> index, fruit <span class="keyword">in</span> <span class="builtin">enumerate</span>(fruits):
+    <span class="builtin">print</span>(f<span class="string">"{index}: {fruit}"</span>)
+
+<span class="comment"># Iterating over dictionary</span>
+person = {<span class="string">"name"</span>: <span class="string">"Alice"</span>, <span class="string">"age"</span>: <span class="number">30</span>}
+<span class="keyword">for</span> key, value <span class="keyword">in</span> person.items():
+    <span class="builtin">print</span>(f<span class="string">"{key}: {value}"</span>)
+
+<span class="comment"># Zip multiple sequences</span>
+names = [<span class="string">"Alice"</span>, <span class="string">"Bob"</span>, <span class="string">"Charlie"</span>]
+ages = [<span class="number">25</span>, <span class="number">30</span>, <span class="number">35</span>]
+<span class="keyword">for</span> name, age <span class="keyword">in</span> <span class="builtin">zip</span>(names, ages):
+    <span class="builtin">print</span>(f<span class="string">"{name} is {age} years old"</span>)</code></pre>
+
+                <h3>While Loops</h3>
+                <pre><code><span class="comment"># Basic while loop</span>
+count = <span class="number">0</span>
+<span class="keyword">while</span> count &amp;lt; <span class="number">5</span>:
+    <span class="builtin">print</span>(count)
+    count += <span class="number">1</span>
+
+<span class="comment"># While with break</span>
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    user_input = <span class="builtin">input</span>(<span class="string">"Enter 'quit' to exit: "</span>)
+    <span class="keyword">if</span> user_input == <span class="string">"quit"</span>:
+        <span class="keyword">break</span>
+    <span class="builtin">print</span>(f<span class="string">"You entered: {user_input}"</span>)
+
+<span class="comment"># While with continue</span>
+i = <span class="number">0</span>
+<span class="keyword">while</span> i &amp;lt; <span class="number">10</span>:
+    i += <span class="number">1</span>
+    <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>:
+        <span class="keyword">continue</span>  <span class="comment"># Skip even numbers</span>
+    <span class="builtin">print</span>(i)
+
+<span class="comment"># While with else</span>
+n = <span class="number">5</span>
+<span class="keyword">while</span> n &amp;gt; <span class="number">0</span>:
+    <span class="builtin">print</span>(n)
+    n -= <span class="number">1</span>
+<span class="keyword">else</span>:
+    <span class="builtin">print</span>(<span class="string">"Loop completed normally"</span>)</code></pre>
+
+                <h3>List Comprehensions</h3>
+                <pre><code><span class="comment"># Basic list comprehension</span>
+squares = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">10</span>)]
+
+<span class="comment"># With condition</span>
+even_squares = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">10</span>) <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>]
+
+<span class="comment"># Nested comprehension</span>
+matrix = [[i*j <span class="keyword">for</span> j <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">3</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">3</span>)]
+
+<span class="comment"># Dictionary comprehension</span>
+squares_dict = {x: x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">5</span>)}
+
+<span class="comment"># Set comprehension</span>
+unique_lengths = {<span class="builtin">len</span>(word) <span class="keyword">for</span> word <span class="keyword">in</span> [<span class="string">"hello"</span>, <span class="string">"world"</span>, <span class="string">"python"</span>]}</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>asyncio for Asynchronous Programming (Python 3.7+)</h2>
+                <pre><code><span class="keyword">import</span> asyncio
+<span class="keyword">import</span> aiohttp
+<span class="keyword">import</span> time
+
+<span class="comment"># Basic async function</span>
+<span class="keyword">async</span> <span class="keyword">def</span> <span class="function">say_hello</span>(name, delay):
+    <span class="keyword">await</span> asyncio.sleep(delay)
+    <span class="builtin">print</span>(f<span class="string">"Hello, {name}!"</span>)
+
+<span class="comment"># Run multiple coroutines concurrently</span>
+<span class="keyword">async</span> <span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Create tasks</span>
+    task1 = asyncio.create_task(say_hello(<span class="string">"Alice"</span>, <span class="number">1</span>))
+    task2 = asyncio.create_task(say_hello(<span class="string">"Bob"</span>, <span class="number">2</span>))
+    task3 = asyncio.create_task(say_hello(<span class="string">"Charlie"</span>, <span class="number">1.5</span>))
+    
+    <span class="comment"># Wait for all tasks</span>
+    <span class="keyword">await</span> asyncio.gather(task1, task2, task3)
+
+<span class="comment"># Async context manager</span>
+<span class="keyword">async</span> <span class="keyword">def</span> <span class="function">fetch_data</span>(session, url):
+    <span class="keyword">async</span> <span class="keyword">with</span> session.get(url) <span class="keyword">as</span> response:
+        <span class="keyword">return</span> <span class="keyword">await</span> response.text()
+
+<span class="comment"># Async generator</span>
+<span class="keyword">async</span> <span class="keyword">def</span> <span class="function">async_counter</span>(n):
+    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(n):
+        <span class="keyword">await</span> asyncio.sleep(<span class="number">0.1</span>)
+        <span class="keyword">yield</span> i
+
+<span class="comment"># Using async generator</span>
+<span class="keyword">async</span> <span class="keyword">def</span> <span class="function">use_async_gen</span>():
+    <span class="keyword">async</span> <span class="keyword">for</span> num <span class="keyword">in</span> async_counter(<span class="number">5</span>):
+        <span class="builtin">print</span>(num)
+
+<span class="comment"># Run async code</span>
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    asyncio.run(main())</code></pre>
+            </div>
+        </div>
+
+        <!-- Page 5: Functions & OOP -->
+        <div id="page5" class="page">
+            <div class="section">
+                <h2>Functions</h2>
+                <h3>Basic Functions</h3>
+                <pre><code><span class="comment"># Simple function</span>
+<span class="keyword">def</span> <span class="function">greet</span>(name):
+    <span class="keyword">return</span> f<span class="string">"Hello, {name}!"</span>
+
+<span class="comment"># Function with default parameters</span>
+<span class="keyword">def</span> <span class="function">greet_with_title</span>(name, title=<span class="string">"Mr."</span>):
+    <span class="keyword">return</span> f<span class="string">"Hello, {title} {name}!"</span>
+
+<span class="comment"># Function with type hints</span>
+<span class="keyword">def</span> <span class="function">add</span>(a: int, b: int) -&amp;gt; int:
+    <span class="keyword">return</span> a + b
+
+<span class="comment"># Function with multiple return values</span>
+<span class="keyword">def</span> <span class="function">get_min_max</span>(numbers: list) -&amp;gt; tuple:
+    <span class="keyword">return</span> <span class="builtin">min</span>(numbers), <span class="builtin">max</span>(numbers)
+
+min_val, max_val = get_min_max([<span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">2</span>])</code></pre>
+
+                <h3>Variable-Length Arguments</h3>
+                <pre><code><span class="comment"># *args for variable positional arguments</span>
+<span class="keyword">def</span> <span class="function">sum_all</span>(*args):
+    <span class="keyword">return</span> <span class="builtin">sum</span>(args)
+
+<span class="builtin">print</span>(sum_all(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))  <span class="comment"># 10</span>
+
+<span class="comment"># **kwargs for variable keyword arguments</span>
+<span class="keyword">def</span> <span class="function">print_info</span>(**kwargs):
+    <span class="keyword">for</span> key, value <span class="keyword">in</span> kwargs.items():
+        <span class="builtin">print</span>(f<span class="string">"{key}: {value}"</span>)
+
+print_info(name=<span class="string">"Alice"</span>, age=<span class="number">30</span>, city=<span class="string">"NYC"</span>)
+
+<span class="comment"># Combining both</span>
+<span class="keyword">def</span> <span class="function">flexible_function</span>(*args, **kwargs):
+    <span class="builtin">print</span>(<span class="string">"Positional:"</span>, args)
+    <span class="builtin">print</span>(<span class="string">"Keyword:"</span>, kwargs)
+
+<span class="comment"># Unpacking arguments</span>
+numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+info = {<span class="string">"name"</span>: <span class="string">"Bob"</span>, <span class="string">"age"</span>: <span class="number">25</span>}
+flexible_function(*numbers, **info)</code></pre>
+
+                <h3>Lambda Functions</h3>
+                <pre><code><span class="comment"># Simple lambda</span>
+square = <span class="keyword">lambda</span> x: x**<span class="number">2</span>
+<span class="builtin">print</span>(square(<span class="number">5</span>))  <span class="comment"># 25</span>
+
+<span class="comment"># Lambda with multiple arguments</span>
+add = <span class="keyword">lambda</span> x, y: x + y
+
+<span class="comment"># Lambda in sorting</span>
+students = [
+    {<span class="string">"name"</span>: <span class="string">"Alice"</span>, <span class="string">"grade"</span>: <span class="number">85</span>},
+    {<span class="string">"name"</span>: <span class="string">"Bob"</span>, <span class="string">"grade"</span>: <span class="number">92</span>},
+    {<span class="string">"name"</span>: <span class="string">"Charlie"</span>, <span class="string">"grade"</span>: <span class="number">78</span>}
+]
+students.sort(key=<span class="keyword">lambda</span> s: s[<span class="string">"grade"</span>], reverse=<span class="keyword">True</span>)
+
+<span class="comment"># Lambda with map, filter, reduce</span>
+numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+squared = <span class="builtin">list</span>(<span class="builtin">map</span>(<span class="keyword">lambda</span> x: x**<span class="number">2</span>, numbers))
+evens = <span class="builtin">list</span>(<span class="builtin">filter</span>(<span class="keyword">lambda</span> x: x % <span class="number">2</span> == <span class="number">0</span>, numbers))
+
+<span class="keyword">from</span> functools <span class="keyword">import</span> reduce
+product = reduce(<span class="keyword">lambda</span> x, y: x * y, numbers)</code></pre>
+
+                <h3>Decorators</h3>
+                <pre><code><span class="comment"># Simple decorator</span>
+<span class="keyword">def</span> <span class="function">timer</span>(func):
+    <span class="keyword">import</span> time
+    <span class="keyword">def</span> <span class="function">wrapper</span>(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        <span class="builtin">print</span>(f<span class="string">"{func.__name__} took {end - start:.4f} seconds"</span>)
+        <span class="keyword">return</span> result
+    <span class="keyword">return</span> wrapper
+
+<span class="decorator">@timer</span>
+<span class="keyword">def</span> <span class="function">slow_function</span>():
+    <span class="keyword">import</span> time
+    time.sleep(<span class="number">1</span>)
+    <span class="keyword">return</span> <span class="string">"Done"</span>
+
+<span class="comment"># Decorator with arguments</span>
+<span class="keyword">def</span> <span class="function">repeat</span>(n):
+    <span class="keyword">def</span> <span class="function">decorator</span>(func):
+        <span class="keyword">def</span> <span class="function">wrapper</span>(*args, **kwargs):
+            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="builtin">range</span>(n):
+                result = func(*args, **kwargs)
+            <span class="keyword">return</span> result
+        <span class="keyword">return</span> wrapper
+    <span class="keyword">return</span> decorator
+
+<span class="decorator">@repeat</span>(<span class="number">3</span>)
+<span class="keyword">def</span> <span class="function">say_hello</span>():
+    <span class="builtin">print</span>(<span class="string">"Hello!"</span>)</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Object-Oriented Programming (OOP)</h2>
+                <h3>Classes &amp; Objects</h3>
+                <pre><code><span class="comment"># Basic class definition</span>s="function">definition</span>
+<span class="keyword">class</span> <span class="function">Person</span>:
+    <span class="comment"># Class variable</span>
+    species = <span class="string">"Homo sapiens"</span>
+    
+    <span class="comment"># Constructor</span>
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, name, age):
+        <span class="comment"># Instance variables</span>
+        <span class="keyword">self</span>.name = name
+        <span class="keyword">self</span>.age = age
+    
+    <span class="comment"># Instance method</span>
+    <span class="keyword">def</span> <span class="function">introduce</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> f<span class="string">"Hi, I'm {self.name} and I'm {self.age} years old"</span>
+    
+    <span class="comment"># Class method</span>
+    <span class="decorator">@classmethod</span>
+    <span class="keyword">def</span> <span class="function">create_baby</span>(cls, name):
+        <span class="keyword">return</span> cls(name, <span class="number">0</span>)
+    
+    <span class="comment"># Static method</span>
+    <span class="decorator">@staticmethod</span>
+    <span class="keyword">def</span> <span class="function">is_adult</span>(age):
+        <span class="keyword">return</span> age &amp;gt;= <span class="number">18</span>
+    
+    <span class="comment"># String representation</span>
+    <span class="keyword">def</span> <span class="function">__str__</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> f<span class="string">"Person(name='{self.name}', age={self.age})"</span>
+    
+    <span class="comment"># Property decorator</span>
+    <span class="decorator">@property</span>
+    <span class="keyword">def</span> <span class="function">age_in_months</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="keyword">self</span>.age * <span class="number">12</span>
+
+<span class="comment"># Create objects</span>
+person1 = Person(<span class="string">"Alice"</span>, <span class="number">30</span>)
+person2 = Person.create_baby(<span class="string">"Baby"</span>)
+<span class="builtin">print</span>(person1.introduce())
+<span class="builtin">print</span>(Person.is_adult(person1.age))</code></pre>
+
+                <h3>Inheritance</h3>
+                <pre><code><span class="comment"># Base class</span>
+<span class="function">class</span> class="keyword">class</span> Animal:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, name, species):
+        <span class="keyword">self</span>.name = name
+        <span class="keyword">self</span>.species = species
+    
+    <span class="keyword">def</span> <span class="function">make_sound</span>(<span class="keyword">self</span>):
+        <span class="keyword">pass</span>
+    
+    <span class="keyword">def</span> <span class="function">info</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> f<span class="string">"{self.name} is a {self.species}"</span>
+
+<span class="comment"># Derived classes</span>
+<span class="keyword">class</span> <span class="function">Dog</span>(Animal):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, name, breed):
+        <span class="keyword">super</span>().__init__(name, <span class="string">"Canine"</span>)
+        <span class="keyword">self</span>.breed = breed
+    
+    <span class="keyword">def</span> <span class="function">make_sound</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="string">"Woof!"</span>
+    
+    <span class="keyword">def</span> <span class="function">fetch</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> f<span class="string">"{self.name} is fetching the ball"</span>
+
+<span class="keyword">class</span> <span class="function">Cat</span>(Animal):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, name):
+        <span class="keyword">super</span>().__init__(name, <span class="string">"Feline"</span>)
+    
+    <span class="keyword">def</span> <span class="function">make_sound</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="string">"Meow!"</span>
+
+<span class="comment"># Multiple inheritance</span>
+<span class="keyword">class</span> <span class="function">Flyable</span>:
+    <span class="keyword">def</span> <span class="function">fly</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="string">"Flying high!"</span>
+
+<span class="keyword">class</span> <span class="function">Bird</span>(Animal, Flyable):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, name):
+        <span class="keyword">super</span>().__init__(name, <span class="string">"Avian"</span>)
+    
+    <span class="keyword">def</span> <span class="function">make_sound</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="string">"Tweet!"</span></code></pre>
+
+                <h3>Polymorphism &amp; Method Overriding</h3>
+                <pre><code><span class="comment"># Polymorphism example</span>
+<span class="keyword">def</span> <span class="function">animal_concert</span>(animals):
+    <span class="keyword">for</span> animal <span class="keyword">in</span> animals:
+        <span class="builtin">print</span>(f<span class="string">"{animal.name}: {animal.make_sound()}"</span>)
+
+<span class="comment"># Create different animals</span>
+dog = Dog(<span class="string">"Buddy"</span>, <span class="string">"Golden Retriever"</span>)
+cat = Cat(<span class="string">"Whiskers"</span>)
+bird = Bird(<span class="string">"Tweety"</span>)
+
+<span class="comment"># All can be treated as Animal</span>
+animals = [dog, cat, bird]
+animal_concert(animals)
+
+<span class="comment"># Method overriding with super()</span>
+<span class="keyword">class</span> <span class="function">SmartDog</span>(Dog):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, name, breed, tricks):
+        <span class="keyword">super</span>().__init__(name, breed)
+        <span class="keyword">self</span>.tricks = tricks
+    
+    <span class="keyword">def</span> <span class="function">info</span>(<span class="keyword">self</span>):
+        <span class="comment"># Override parent method but use it too</span>
+        basic_info = <span class="keyword">super</span>().info()
+        <span class="keyword">return</span> f<span class="string">"{basic_info} and knows {len(self.tricks)} tricks"</span></code></pre>
+
+                <h3>Special Methods (Magic Methods)</h3>
+                <pre><code><span class="keyword">class</span> <span class="function">Vector</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, x, y):
+        <span class="keyword">self</span>.x = x
+        <span class="keyword">self</span>.y = y
+    
+    <span class="comment"># String representations</span>
+    <span class="keyword">def</span> <span class="function">__str__</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> f<span class="string">"Vector({self.x}, {self.y})"</span>
+    
+    <span class="keyword">def</span> <span class="function">__repr__</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> f<span class="string">"Vector(x={self.x}, y={self.y})"</span>
+    
+    <span class="comment"># Arithmetic operations</span>
+    <span class="keyword">def</span> <span class="function">__add__</span>(<span class="keyword">self</span>, other):
+        <span class="keyword">return</span> Vector(<span class="keyword">self</span>.x + other.x, <span class="keyword">self</span>.y + other.y)
+    
+    <span class="keyword">def</span> <span class="function">__sub__</span>(<span class="keyword">self</span>, other):
+        <span class="keyword">return</span> Vector(<span class="keyword">self</span>.x - other.x, <span class="keyword">self</span>.y - other.y)
+    
+    <span class="keyword">def</span> <span class="function">__mul__</span>(<span class="keyword">self</span>, scalar):
+        <span class="keyword">return</span> Vector(<span class="keyword">self</span>.x * scalar, <span class="keyword">self</span>.y * scalar)
+    
+    <span class="comment"># Comparison</span>
+    <span class="keyword">def</span> <span class="function">__eq__</span>(<span class="keyword">self</span>, other):
+        <span class="keyword">return</span> <span class="keyword">self</span>.x == other.x <span class="keyword">and</span> <span class="keyword">self</span>.y == other.y
+    
+    <span class="comment"># Length</span>
+    <span class="keyword">def</span> <span class="function">__len__</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="builtin">int</span>((<span class="keyword">self</span>.x**<span class="number">2</span> + <span class="keyword">self</span>.y**<span class="number">2</span>)**<span class="number">0.5</span>)
+    
+    <span class="comment"># Make it iterable</span>
+    <span class="keyword">def</span> <span class="function">__iter__</span>(<span class="keyword">self</span>):
+        <span class="keyword">yield</span> <span class="keyword">self</span>.x
+        <span class="keyword">yield</span> <span class="keyword">self</span>.y
+    
+    <span class="comment"># Item access</span>
+    <span class="keyword">def</span> <span class="function">__getitem__</span>(<span class="keyword">self</span>, index):
+        <span class="keyword">if</span> index == <span class="number">0</span>:
+            <span class="keyword">return</span> <span class="keyword">self</span>.x
+        <span class="keyword">elif</span> index == <span class="number">1</span>:
+            <span class="keyword">return</span> <span class="keyword">self</span>.y
+        <span class="keyword">else</span>:
+            <span class="keyword">raise</span> IndexError(<span class="string">"Vector index out of range"</span>)</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>self Type (Python 3.11+)</h2>
+                <pre><code><span class="keyword">from</span> typing <span class="keyword">import</span> Self
+
+<span class="keyword">class</span> <span class="function">Shape</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, x: float, y: float) -&amp;gt; <span class="keyword">None</span>:
+        <span class="keyword">self</span>.x = x
+        <span class="keyword">self</span>.y = y
+    
+    <span class="keyword">def</span> <span class="function">move</span>(<span class="keyword">self</span>, dx: float, dy: float) -&amp;gt; Self:
+        <span class="keyword">self</span>.x += dx
+        <span class="keyword">self</span>.y += dy
+        <span class="keyword">return</span> <span class="keyword">self</span>  <span class="comment"># Returns the same type as the class</span>
+    
+    <span class="function">def</span>an class="keyword">def</span> scale(<span class="keyword">self</span>, factor: float) -&amp;gt; Self:
+        <span class="keyword">self</span>.x *= factor
+        <span class="keyword">self</span>.y *= factor
+        <span class="keyword">return</span> <span class="keyword">self</span>
+
+<span class="comment"># Method chaining works with proper type hints</span>
+shape = Shape(<span class="number">10</span>, <span class="number">20</span>)
+shape.move(<span class="number">5</span>, <span class="number">5</span>).scale(<span class="number">2</span>).move(-<span class="number">3</span>, -<span class="number">3</span>)</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>dataclasses Module (Python 3.7+)</h2>
+                <pre><code><span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass, field, asdict, astuple
+<span class="keyword">from</span> typing <span class="keyword">import</span> List
+
+<span class="comment"># Basic dataclass</span>
+<span class="decorator">@dataclass</span>
+<span class="function">class</span> class="keyword">class</span> Point:
+    x: float
+    y: float
+    
+    <span class="keyword">def</span> <span class="function">distance_from_origin</span>(<span class="keyword">self</span>) -&amp;gt; float:
+        <span class="keyword">return</span> (<span class="keyword">self</span>.x**<span class="number">2</span> + <span class="keyword">self</span>.y**<span class="number">2</span>)**<span class="number">0.5</span>
+
+<span class="comment"># Dataclass with defaults and fields</span>ith</span> defaults and fields
+<span class="decorator">@dataclass</span>
+<span class="function">class</span> class="keyword">class</span> Employee:
+    name: str
+    id: int
+    salary: float = <span class="number">50000.0</span>
+    skills: List[str] = field(default_factory=list)
+    
+    <span class="comment"># Post-init processing</span>
+    <span class="keyword">def</span> <span class="function">__post_init__</span>(<span class="keyword">self</span>):
+        <span class="keyword">self</span>.email = f<span class="string">"{self.name.lower().replace(' ', '.')}@company.com"</span>
+
+<span class="comment"># Frozen dataclass (immutable)</span>
+<span class="decorator">@dataclass</span>(frozen=<span class="keyword">True</span>)
+<span class="keyword">class</span> <span class="function">ImmutablePoint</span>:
+    x: float
+    y: float
+
+<span class="comment"># Dataclass with ordering</span>function">with</span> ordering
+<span class="decorator">@dataclass</span>(order=<span class="keyword">True</span>)
+<span class="keyword">class</span> <span class="function">Person</span>:
+    sort_index: int = field(init=<span class="keyword">False</span>, repr=<span class="keyword">False</span>)
+    name: str
+    age: int
+    
+    <span class="keyword">def</span> <span class="function">__post_init__</span>(<span class="keyword">self</span>):
+        <span class="keyword">self</span>.sort_index = <span class="keyword">self</span>.age
+
+<span class="comment"># Usage examples</span>
+p1 = Point(<span class="number">3</span>, <span class="number">4</span>)
+<span class="builtin">print</span>(p1)  <span class="comment"># Point(x=3, y=4)</span>
+<span class="builtin">print</span>(asdict(p1))  <span class="comment"># {'x': 3, 'y': 4}</span>ring">'x'</span>: 3, <span class="string">'y'</span>: 4}
+
+emp = Employee(<span class="string">"John Doe"</span>, <span class="number">12345</span>)
+<span class="builtin">print</span>(emp.email)  <span class="comment"># john.doe@company.com</span></code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Generators</h2>
+                <pre><code><span class="comment"># Simple generator function</span>
+<span class="keyword">def</span> <span class="function">count_up_to</span>(n):
+    i = <span class="number">1</span>
+    <span class="keyword">while</span> i &amp;lt;= n:
+        <span class="keyword">yield</span> i
+        i += <span class="number">1</span>
+
+<span class="comment"># Using the generator</span>
+<span class="keyword">for</span> num <span class="keyword">in</span> count_up_to(<span class="number">5</span>):
+    <span class="builtin">print</span>(num)
+
+<span class="comment"># Generator expression</span>
+squares_gen = (x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">10</span>))
+
+<span class="comment"># Infinite generator</span>
+<span class="keyword">def</span> <span class="function">fibonacci</span>():
+    a, b = <span class="number">0</span>, <span class="number">1</span>
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        <span class="keyword">yield</span> a
+        a, b = b, a + b
+
+<span class="comment"># Generator with send()</span>
+<span class="keyword">def</span> <span class="function">accumulator</span>():
+    total = <span class="number">0</span>
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        value = <span class="keyword">yield</span> total
+        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:
+            total += value
+
+<span class="comment"># Using send()</span>
+acc = accumulator()
+next(acc)  <span class="comment"># Initialize</span>
+<span class="builtin">print</span>(acc.send(<span class="number">10</span>))  <span class="comment"># 10</span>
+<span class="builtin">print</span>(acc.send(<span class="number">20</span>))  <span class="comment"># 30</span>
+
+<span class="comment"># yield from (delegation)</span>
+<span class="keyword">def</span> <span class="function">chain_generators</span>(*iterables):
+    <span class="keyword">for</span> iterable <span class="keyword">in</span> iterables:
+        <span class="keyword">yield</span> <span class="keyword">from</span> iterable
+
+<span class="comment"># Generator for reading large files</span>
+<span class="keyword">def</span> <span class="function">read_large_file</span>(file_path):
+    <span class="keyword">with</span> <span class="builtin">open</span>(file_path, <span class="string">'r'</span>) <span class="keyword">as</span> file:
+        <span class="keyword">for</span> line <span class="keyword">in</span> file:
+            <span class="keyword">yield</span> line.strip()</code></pre>
+            </div>
+        </div>
+
+        <!-- Page 6: Advanced Features -->
+        <div id="page6" class="page">
+            <div class="section">
+                <h2>Context Managers</h2>
+                <pre><code><span class="comment"># Using built-in context managers</span>
+<span class="keyword">with</span> <span class="builtin">open</span>(<span class="string">'file.txt'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:
+    content = f.read()
+
+<span class="comment"># Custom context manager with class</span>
+<span class="function">class</span> class="keyword">class</span> Timer:
+    <span class="keyword">def</span> <span class="function">__enter__</span>(<span class="keyword">self</span>):
+        <span class="keyword">import</span> time
+        <span class="keyword">self</span>.start = time.time()
+        <span class="keyword">return</span> <span class="keyword">self</span>
+    
+    <span class="keyword">def</span> <span class="function">__exit__</span>(<span class="keyword">self</span>, exc_type, exc_value, traceback):
+        <span class="keyword">import</span> time
+        <span class="keyword">self</span>.end = time.time()
+        <span class="builtin">print</span>(f<span class="string">"Execution time: {self.end - self.start:.4f} seconds"</span>)
+
+<span class="comment"># Using custom context manager</span>
+<span class="keyword">with</span> Timer():
+    <span class="keyword">import</span> time
+    time.sleep(<span class="number">1</span>)
+
+<span class="comment"># Context manager with contextlib</span>
+<span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager
+
+<span class="decorator">@contextmanager</span>
+<span class="keyword">def</span> <span class="function">temporary_change</span>(obj, attr, new_value):
+    old_value = <span class="builtin">getattr</span>(obj, attr)
+    <span class="builtin">setattr</span>(obj, attr, new_value)
+    <span class="keyword">try</span>:
+        <span class="keyword">yield</span>
+    <span class="keyword">finally</span>:
+        <span class="builtin">setattr</span>(obj, attr, old_value)
+
+<span class="comment"># Multiple context managers</span>
+<span class="keyword">with</span> <span class="builtin">open</span>(<span class="string">'input.txt'</span>) <span class="keyword">as</span> infile, <span class="builtin">open</span>(<span class="string">'output.txt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> outfile:
+    outfile.write(infile.read().upper())</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Metaclasses</h2>
+                <pre><code><span class="comment"># Simple metaclass</span>
+<span class="function">class</span> class="keyword">class</span> SingletonMeta(type):
+    _instances = {}
+    
+    <span class="keyword">def</span> <span class="function">__call__</span>(cls, *args, **kwargs):
+        <span class="keyword">if</span> cls <span class="keyword">not</span> <span class="keyword">in</span> cls._instances:
+            cls._instances[cls] = <span class="keyword">super</span>().__call__(*args, **kwargs)
+        <span class="keyword">return</span> cls._instances[cls]
+
+<span class="keyword">class</span> <span class="function">Database</span>(metaclass=SingletonMeta):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>):
+        <span class="keyword">self</span>.connection = <span class="string">"Connected to DB"</span>
+
+<span class="comment"># Both will be the same instance</span>
+db1 = Database()
+db2 = Database()
+<span class="builtin">print</span>(db1 <span class="keyword">is</span> db2)  <span class="comment"># True</span>
+
+<span class="comment"># Metaclass that adds methods</span>tion">that</span> adds methods
+<span class="keyword">class</span> <span class="function">AutoPropertyMeta</span>(type):
+    <span class="keyword">def</span> <span class="function">__new__</span>(mcs, name, bases, namespace):
+        <span class="comment"># Add getter/setter for attributes starting with '_'</span>an class="string">'_'</span>
+        <span class="keyword">for</span> key, value <span class="keyword">in</span> <span class="builtin">list</span>(namespace.items()):
+            <span class="keyword">if</span> key.startswith(<span class="string">'_'</span>) <span class="keyword">and</span> <span class="keyword">not</span> key.startswith(<span class="string">'__'</span>):
+                <span class="keyword">def</span> <span class="function">make_property</span>(attr_name):
+                    <span class="keyword">def</span> <span class="function">getter</span>(<span class="keyword">self</span>):
+                        <span class="keyword">return</span> <span class="builtin">getattr</span>(<span class="keyword">self</span>, attr_name)
+                    <span class="keyword">def</span> <span class="function">setter</span>(<span class="keyword">self</span>, value):
+                        <span class="builtin">setattr</span>(<span class="keyword">self</span>, attr_name, value)
+                    <span class="keyword">return</span> property(getter, setter)
+                
+                prop_name = key[<span class="number">1</span>:]  <span class="comment"># Remove leading underscore</span>
+                namespace[prop_name] = make_property(key)
+        
+        <span class="keyword">return</span> <span class="keyword">super</span>().__new__(mcs, name, bases, namespace)</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Abstract Base Classes</h2>
+                <pre><code><span class="keyword">from</span> abc <span class="keyword">import</span> ABC, abstractmethod
+
+<span class="comment"># Abstract base class</span>
+<span class="function">class</span> class="keyword">class</span> Shape(ABC):
+    <span class="decorator">@abstractmethod</span>
+    <span class="keyword">def</span> <span class="function">area</span>(<span class="keyword">self</span>):
+        <span class="keyword">pass</span>
+    
+    <span class="decorator">@abstractmethod</span>
+    <span class="keyword">def</span> <span class="function">perimeter</span>(<span class="keyword">self</span>):
+        <span class="keyword">pass</span>
+    
+    <span class="keyword">def</span> <span class="function">description</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> f<span class="string">"This is a {self.__class__.__name__}"</span>
+
+<span class="comment"># Concrete implementations</span>
+<span class="keyword">class</span> <span class="function">Rectangle</span>(Shape):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, width, height):
+        <span class="keyword">self</span>.width = width
+        <span class="keyword">self</span>.height = height
+    
+    <span class="keyword">def</span> <span class="function">area</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="keyword">self</span>.width * <span class="keyword">self</span>.height
+    
+    <span class="keyword">def</span> <span class="function">perimeter</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="number">2</span> * (<span class="keyword">self</span>.width + <span class="keyword">self</span>.height)
+
+<span class="keyword">class</span> <span class="function">Circle</span>(Shape):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, radius):
+        <span class="keyword">self</span>.radius = radius
+    
+    <span class="keyword">def</span> <span class="function">area</span>(<span class="keyword">self</span>):
+        <span class="keyword">import</span> math
+        <span class="keyword">return</span> math.pi * <span class="keyword">self</span>.radius ** <span class="number">2</span>
+    
+    <span class="keyword">def</span> <span class="function">perimeter</span>(<span class="keyword">self</span>):
+        <span class="keyword">import</span> math
+        <span class="keyword">return</span> <span class="number">2</span> * math.pi * <span class="keyword">self</span>.radius
+
+<span class="comment"># Cannot instantiate abstract class</span>
+<span class="comment"># shape = Shape()  # TypeError</span>
+
+<span class="comment"># Can instantiate concrete classes</span>
+rect = Rectangle(<span class="number">5</span>, <span class="number">3</span>)
+circle = Circle(<span class="number">4</span>)</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Property Descriptors</h2>
+                <pre><code><span class="comment"># Descriptor protocol</span>
+<span class="keyword">class</span> <span class="function">ValidatedAttribute</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, validator):
+        <span class="keyword">self</span>.validator = validator
+        <span class="keyword">self</span>.data = {}
+    
+    <span class="keyword">def</span> <span class="function">__get__</span>(<span class="keyword">self</span>, obj, objtype=<span class="keyword">None</span>):
+        <span class="keyword">if</span> obj <span class="keyword">is</span> <span class="keyword">None</span>:
+            <span class="keyword">return</span> <span class="keyword">self</span>
+        <span class="keyword">return</span> <span class="keyword">self</span>.data.get(id(obj), <span class="keyword">None</span>)
+    
+    <span class="keyword">def</span> <span class="function">__set__</span>(<span class="keyword">self</span>, obj, value):
+        <span class="keyword">self</span>.validator(value)
+        <span class="keyword">self</span>.data[id(obj)] = value
+    
+    <span class="keyword">def</span> <span class="function">__delete__</span>(<span class="keyword">self</span>, obj):
+        del <span class="keyword">self</span>.data[id(obj)]
+
+<span class="comment"># Using descriptors</span>
+<span class="keyword">class</span> <span class="function">Person</span>:
+    <span class="keyword">def</span> <span class="function">validate_age</span>(value):
+        <span class="keyword">if</span> <span class="keyword">not</span> <span class="builtin">isinstance</span>(value, int) <span class="keyword">or</span> value &amp;lt; <span class="number">0</span>:
+            <span class="keyword">raise</span> ValueError(<span class="string">"Age must be a non-negative integer"</span>)
+    
+    <span class="keyword">def</span> <span class="function">validate_name</span>(value):
+        <span class="keyword">if</span> <span class="keyword">not</span> <span class="builtin">isinstance</span>(value, str) <span class="keyword">or</span> <span class="keyword">not</span> value:
+            <span class="keyword">raise</span> ValueError(<span class="string">"Name must be a non-empty string"</span>)
+    
+    age = ValidatedAttribute(validate_age)
+    name = ValidatedAttribute(validate_name)
+    
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, name, age):
+        <span class="keyword">self</span>.name = name
+        <span class="keyword">self</span>.age = age
+
+<span class="comment"># Property decorator as descriptor</span>
+<span class="keyword">class</span> <span class="function">Temperature</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, celsius=<span class="number">0</span>):
+        <span class="keyword">self</span>._celsius = celsius
+    
+    <span class="decorator">@property</span>
+    <span class="keyword">def</span> <span class="function">celsius</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="keyword">self</span>._celsius
+    
+    <span class="decorator">@celsius</span>.setter
+    <span class="keyword">def</span> <span class="function">celsius</span>(<span class="keyword">self</span>, value):
+        <span class="keyword">if</span> value &amp;lt; -<span class="number">273.15</span>:
+            <span class="keyword">raise</span> ValueError(<span class="string">"Temperature below absolute zero is not possible"</span>)
+        <span class="keyword">self</span>._celsius = value
+    
+    <span class="decorator">@property</span>
+    <span class="keyword">def</span> <span class="function">fahrenheit</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="keyword">self</span>._celsius * <span class="number">9</span>/<span class="number">5</span> + <span class="number">32</span>
+    
+    <span class="decorator">@fahrenheit</span>.setter
+    <span class="keyword">def</span> <span class="function">fahrenheit</span>(<span class="keyword">self</span>, value):
+        <span class="keyword">self</span>._celsius = (value - <span class="number">32</span>) * <span class="number">5</span>/<span class="number">9</span></code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Iterators and Iteration Protocol</h2>
+                <pre><code><span class="comment"># Custom iterator class</span>
+<span class="function">class</span> class="keyword">class</span> Counter:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, start, end):
+        <span class="keyword">self</span>.current = start
+        <span class="keyword">self</span>.end = end
+    
+    <span class="keyword">def</span> <span class="function">__iter__</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="keyword">self</span>
+    
+    <span class="keyword">def</span> <span class="function">__next__</span>(<span class="keyword">self</span>):
+        <span class="keyword">if</span> <span class="keyword">self</span>.current &amp;lt; <span class="keyword">self</span>.end:
+            num = <span class="keyword">self</span>.current
+            <span class="keyword">self</span>.current += <span class="number">1</span>
+            <span class="keyword">return</span> num
+        <span class="keyword">raise</span> StopIteration
+
+<span class="comment"># Iterable class with separate iterator</span>>with</span> separate iterator
+<span class="keyword">class</span> <span class="function">Squares</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, max_value):
+        <span class="keyword">self</span>.max_value = max_value
+    
+    <span class="keyword">def</span> <span class="function">__iter__</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> SquareIterator(<span class="keyword">self</span>.max_value)
+
+<span class="keyword">class</span> <span class="function">SquareIterator</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, max_value):
+        <span class="keyword">self</span>.max_value = max_value
+        <span class="keyword">self</span>.num = <span class="number">0</span>
+    
+    <span class="keyword">def</span> <span class="function">__iter__</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="keyword">self</span>
+    
+    <span class="keyword">def</span> <span class="function">__next__</span>(<span class="keyword">self</span>):
+        <span class="keyword">if</span> <span class="keyword">self</span>.num &amp;lt;= <span class="keyword">self</span>.max_value:
+            result = <span class="keyword">self</span>.num ** <span class="number">2</span>
+            <span class="keyword">self</span>.num += <span class="number">1</span>
+            <span class="keyword">return</span> result
+        <span class="keyword">raise</span> StopIteration
+
+<span class="comment"># Infinite iterator</span>
+<span class="keyword">class</span> <span class="function">CycleIterator</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, data):
+        <span class="keyword">self</span>.data = data
+        <span class="keyword">self</span>.index = <span class="number">0</span>
+    
+    <span class="keyword">def</span> <span class="function">__iter__</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="keyword">self</span>
+    
+    <span class="keyword">def</span> <span class="function">__next__</span>(<span class="keyword">self</span>):
+        result = <span class="keyword">self</span>.data[<span class="keyword">self</span>.index % <span class="builtin">len</span>(<span class="keyword">self</span>.data)]
+        <span class="keyword">self</span>.index += <span class="number">1</span>
+        <span class="keyword">return</span> result</code></pre>
+            </div>
+
+            <div class="section">
+                <h2>Multiprocessing and Threading</h2>
+                <pre><code><span class="comment"># Threading example</span>
+<span class="keyword">import</span> threading
+<span class="keyword">import</span> time
+
+<span class="keyword">def</span> <span class="function">worker</span>(name, delay):
+    <span class="builtin">print</span>(f<span class="string">"Worker {name} starting"</span>)
+    time.sleep(delay)
+    <span class="builtin">print</span>(f<span class="string">"Worker {name} finished"</span>)
+
+<span class="comment"># Create threads</span>
+threads = []
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">3</span>):
+    t = threading.Thread(target=worker, args=(f<span class="string">"Thread-{i}"</span>, <span class="number">2</span>))
+    threads.append(t)
+    t.start()
+
+<span class="comment"># Wait for all threads</span>
+<span class="keyword">for</span> t <span class="keyword">in</span> threads:
+    t.join()
+
+<span class="comment"># Thread-safe operations with Lock</span>
+counter = <span class="number">0</span>
+lock = threading.Lock()
+
+<span class="keyword">def</span> <span class="function">increment_counter</span>():
+    <span class="keyword">global</span> counter
+    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">1000000</span>):
+        <span class="keyword">with</span> lock:
+            counter += <span class="number">1</span>
+
+<span class="comment"># Multiprocessing example</span>
+<span class="keyword">import</span> multiprocessing
+
+<span class="keyword">def</span> <span class="function">cpu_bound_task</span>(n):
+    <span class="comment"># Simulate CPU-intensive work</span>
+    result = <span class="builtin">sum</span>(i * i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(n))
+    <span class="keyword">return</span> result
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    <span class="comment"># Create process pool</span>
+    <span class="keyword">with</span> multiprocessing.Pool(processes=<span class="number">4</span>) <span class="keyword">as</span> pool:
+        <span class="comment"># Map function to multiple inputs</span>
+        inputs = [<span class="number">1000000</span>, <span class="number">2000000</span>, <span class="number">3000000</span>, <span class="number">4000000</span>]
+        results = pool.<span class="builtin">map</span>(cpu_bound_task, inputs)
+        <span class="builtin">print</span>(results)
+
+<span class="comment"># Concurrent.futures for high-level interface</span>
+<span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ThreadPoolExecutor, ProcessPoolExecutor
+
+<span class="keyword">def</span> <span class="function">task</span>(n):
+    <span class="keyword">return</span> n ** <span class="number">2</span>
+
+<span class="comment"># Thread pool</span>
+<span class="keyword">with</span> ThreadPoolExecutor(max_workers=<span class="number">4</span>) <span class="keyword">as</span> executor:
+    futures = [executor.submit(task, i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">10</span>)]
+    results = [f.result() <span class="keyword">for</span> f <span class="keyword">in</span> futures]</code></pre>
+            </div>
+        </div>
+
+        <!-- Page 7: ML Libraries -->
+        <div id="page7" class="page">
+            <div class="section">
+                <h2>PyTorch Basics</h2>
+                <pre><code><span class="keyword">import</span> torch
+<span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn
+<span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim
+<span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F
+<span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader, TensorDataset
+
+<span class="comment"># Creating tensors</span>
+x = torch.tensor([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], dtype=torch.float32)
+y = torch.zeros(<span class="number">3</span>, <span class="number">4</span>)
+z = torch.ones(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)
+random_tensor = torch.randn(<span class="number">3</span>, <span class="number">3</span>)  <span class="comment"># Normal distribution</span>
+
+<span class="comment"># Tensor operations</span>
+a = torch.tensor([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])
+b = torch.tensor([[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]])
+
+<span class="comment"># Element-wise operations</span>
+c = a + b
+d = a * b
+e = torch.matmul(a, b)  <span class="comment"># Matrix multiplication</span>
+
+<span class="comment"># Reshaping</span>
+x = torch.randn(<span class="number">4</span>, <span class="number">4</span>)
+y = x.view(<span class="number">16</span>)
+z = x.view(-<span class="number">1</span>, <span class="number">8</span>)  <span class="comment"># -1 infers the size</span>
+
+<span class="comment"># Simple Neural Network</span>
+<span class="keyword">class</span> <span class="function">SimpleNN</span>(nn.Module):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, input_size, hidden_size, output_size):
+        <span class="keyword">super</span>(SimpleNN, <span class="keyword">self</span>).__init__()
+        <span class="keyword">self</span>.fc1 = nn.Linear(input_size, hidden_size)
+        <span class="keyword">self</span>.relu = nn.ReLU()
+        <span class="keyword">self</span>.fc2 = nn.Linear(hidden_size, output_size)
+        <span class="keyword">self</span>.dropout = nn.Dropout(<span class="number">0.2</span>)
+    
+    <span class="keyword">def</span> <span class="function">forward</span>(<span class="keyword">self</span>, x):
+        x = <span class="keyword">self</span>.fc1(x)
+        x = <span class="keyword">self</span>.relu(x)
+        x = <span class="keyword">self</span>.dropout(x)
+        x = <span class="keyword">self</span>.fc2(x)
+        <span class="keyword">return</span> x
+
+<span class="comment"># Create model</span>
+model = SimpleNN(input_size=<span class="number">10</span>, hidden_size=<span class="number">20</span>, output_size=<span class="number">3</span>)
+
+<span class="comment"># Loss function and optimizer</span>
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=<span class="number">0.001</span>)
+
+<span class="comment"># Training loop example</span>
+<span class="keyword">def</span> <span class="function">train</span>(model, dataloader, criterion, optimizer, epochs=<span class="number">10</span>):
+    model.train()
+    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="builtin">range</span>(epochs):
+        running_loss = <span class="number">0.0</span>
+        <span class="keyword">for</span> inputs, labels <span class="keyword">in</span> dataloader:
+            <span class="comment"># Zero gradients</span>
+            optimizer.zero_grad()
+            
+            <span class="comment"># Forward pass</span>
+            outputs = model(inputs)
+            loss = criterion(outputs, labels)
+            
+            <span class="comment"># Backward pass</span>
+            loss.backward()
+            optimizer.step()
+            
+            running_loss += loss.item()
+        
+        <span class="builtin">print</span>(f<span class="string">"Epoch {epoch+1}, Loss: {running_loss/len(dataloader):.4f}"</span>)</code></pre>
+
+                <h3>CNN Example</h3>
+                <pre><code><span class="comment"># Convolutional Neural Network</span>
+<span class="keyword">class</span> <span class="function">CNN</span>(nn.Module):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, num_classes=<span class="number">10</span>):
+        <span class="keyword">super</span>(CNN, <span class="keyword">self</span>).__init__()
+        <span class="comment"># Convolutional layers</span>
+        <span class="keyword">self</span>.conv1 = nn.Conv2d(in_channels=<span class="number">3</span>, out_channels=<span class="number">32</span>, 
+                               kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)
+        <span class="keyword">self</span>.conv2 = nn.Conv2d(<span class="number">32</span>, <span class="number">64</span>, <span class="number">3</span>, padding=<span class="number">1</span>)
+        <span class="keyword">self</span>.conv3 = nn.Conv2d(<span class="number">64</span>, <span class="number">128</span>, <span class="number">3</span>, padding=<span class="number">1</span>)
+        
+        <span class="comment"># Pooling layer</span>
+        <span class="keyword">self</span>.pool = nn.MaxPool2d(kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>)
+        
+        <span class="comment"># Fully connected layers</span>
+        <span class="keyword">self</span>.fc1 = nn.Linear(<span class="number">128</span> * <span class="number">4</span> * <span class="number">4</span>, <span class="number">512</span>)
+        <span class="keyword">self</span>.fc2 = nn.Linear(<span class="number">512</span>, num_classes)
+        
+        <span class="keyword">self</span>.dropout = nn.Dropout(<span class="number">0.5</span>)
+    
+    <span class="keyword">def</span> <span class="function">forward</span>(<span class="keyword">self</span>, x):
+        <span class="comment"># Conv layers with ReLU and pooling</span>
+        x = <span class="keyword">self</span>.pool(F.relu(<span class="keyword">self</span>.conv1(x)))
+        x = <span class="keyword">self</span>.pool(F.relu(<span class="keyword">self</span>.conv2(x)))
+        x = <span class="keyword">self</span>.pool(F.relu(<span class="keyword">self</span>.conv3(x)))
+        
+        <span class="comment"># Flatten</span>
+        x = x.view(-<span class="number">1</span>, <span class="number">128</span> * <span class="number">4</span> * <span class="number">4</span>)
+        
+        <span class="comment"># Fully connected layers</span>
+        x = F.relu(<span class="keyword">self</span>.fc1(x))
+        x = <span class="keyword">self</span>.dropout(x)
+        x = <span class="keyword">self</span>.fc2(x)
+        
+        <span class="keyword">return</span> x
+
+<span class="comment"># Custom Dataset</span>
+<span class="keyword">class</span> <span class="function">CustomDataset</span>(torch.utils.data.Dataset):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, data, labels, transform=<span class="keyword">None</span>):
+        <span class="keyword">self</span>.data = data
+        <span class="keyword">self</span>.labels = labels
+        <span class="keyword">self</span>.transform = transform
+    
+    <span class="keyword">def</span> <span class="function">__len__</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="builtin">len</span>(<span class="keyword">self</span>.data)
+    
+    <span class="keyword">def</span> <span class="function">__getitem__</span>(<span class="keyword">self</span>, idx):
+        sample = <span class="keyword">self</span>.data[idx]
+        label = <span class="keyword">self</span>.labels[idx]
+        
+        <span class="keyword">if</span> <span class="keyword">self</span>.transform:
+            sample = <span class="keyword">self</span>.transform(sample)
+        
+        <span class="keyword">return</span> sample, label</code></pre>
+
+                <h3>RNN/LSTM Example</h3>
+                <pre><code><span class="comment"># LSTM for sequence modeling</span>
+<span class="keyword">class</span> <span class="function">LSTMModel</span>(nn.Module):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, input_size, hidden_size, num_layers, output_size):
+        <span class="keyword">super</span>(LSTMModel, <span class="keyword">self</span>).__init__()
+        <span class="keyword">self</span>.hidden_size = hidden_size
+        <span class="keyword">self</span>.num_layers = num_layers
+        
+        <span class="keyword">self</span>.lstm = nn.LSTM(input_size, hidden_size, num_layers, 
+                           batch_first=<span class="keyword">True</span>, dropout=<span class="number">0.2</span>)
+        <span class="keyword">self</span>.fc = nn.Linear(hidden_size, output_size)
+    
+    <span class="keyword">def</span> <span class="function">forward</span>(<span class="keyword">self</span>, x):
+        <span class="comment"># Initialize hidden state</span>
+        h0 = torch.zeros(<span class="keyword">self</span>.num_layers, x.size(<span class="number">0</span>), <span class="keyword">self</span>.hidden_size)
+        c0 = torch.zeros(<span class="keyword">self</span>.num_layers, x.size(<span class="number">0</span>), <span class="keyword">self</span>.hidden_size)
+        
+        <span class="comment"># LSTM forward pass</span>
+        out, _ = <span class="keyword">self</span>.lstm(x, (h0, c0))
+        
+        <span class="comment"># Use last time step</span>
+        out = <span class="keyword">self</span>.fc(out[:, -<span class="number">1</span>, :])
+        <span class="keyword">return</span> out</code></pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
