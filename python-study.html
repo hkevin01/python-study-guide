@@ -161,30 +161,7 @@
             }
         }
     </style>
-    <script>
-        function showPage(pageId) {
-            // Hide all pages
-            var pages = document.querySelectorAll('.page');
-            pages.forEach(function(page) {
-                page.classList.remove('active');
-            });
-            // Remove active class from all buttons
-            var buttons = document.querySelectorAll('.nav-btn');
-            buttons.forEach(function(btn) {
-                btn.classList.remove('active');
-            });
-            // Show the selected page
-            var page = document.getElementById(pageId);
-            if (page) {
-                page.classList.add('active');
-            }
-            // Set the clicked button as active
-            var event = window.event;
-            if (event && event.target) {
-                event.target.classList.add('active');
-            }
-        }
-    </script>
+    <script src="js/navigation.js"></script>
 </head>
 <body>
     <header>
@@ -532,6 +509,29 @@ text = <span class="string">"  Python Programming  "</span>
 <span class="keyword">print</span>(text.replace(<span class="string">"Python"</span>, <span class="string">"Java"</span>))
 <span class="keyword">print</span>(text.split())       <span class="comment"># Split into list</span></code></pre>
 
+                <h3>Escape Characters</h3>
+                <table>
+                    <tbody><tr>
+                        <th>Escape Sequence</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>\n</code></td>
+                        <td>Newline</td>
+                        <td><code>"Line 1\nLine 2"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>\t</code></td>
+                        <td>Tab</td>
+                        <td><code>"Col1\tCol2"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>\\</code></td>
+                        <td>Backslash</td>
+                        <td><code>"C:\\Users"</code></td>
+                    </tr>
+                    <tr>
                 <h3>Escape Characters</h3>
                 <table>
                     <tbody><tr>
